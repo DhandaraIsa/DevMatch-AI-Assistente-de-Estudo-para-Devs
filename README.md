@@ -139,3 +139,4 @@ GEMINI_API_KEY=sua-chave-api-gemini
 - JWT é usado para autenticação
 - CORS está configurado adequadamente
 - Variáveis sensíveis devem estar em `.env`
+# DevMatch-AI-Assistente-de-Estudo-para-Devs
