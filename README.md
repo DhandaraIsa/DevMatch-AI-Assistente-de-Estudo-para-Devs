@@ -140,3 +140,5 @@ GEMINI_API_KEY=sua-chave-api-gemini
 - CORS está configurado adequadamente
 - Variáveis sensíveis devem estar em `.env`
 # DevMatch-AI-Assistente-de-Estudo-para-Devs
+# DevMatch-AI-Assistente-de-Estudo-para-Devs
+# DevMatch-AI-Assistente-de-Estudo-para-Devs
