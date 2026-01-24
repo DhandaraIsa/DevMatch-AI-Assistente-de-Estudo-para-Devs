@@ -1,143 +1,140 @@
-# DevMatch AI - Assistente de Estudo para Devs
+# DevMatch AI 🤖📚  
+### Assistente de Estudo para Desenvolvedores
 
-Plataforma web inteligente que combina um backend FastAPI com um frontend React/Vite para criar um assistente de estudo alimentado por IA (Gemini).
+O **DevMatch AI** é uma aplicação full stack que utiliza **Inteligência Artificial** para ajudar desenvolvedores a estudarem de forma mais eficiente, personalizada e prática.
+
+O usuário informa:
+- O que está estudando (ex: Python, React, SQL)
+- Seu nível (iniciante, médio ou avançado)
+
+E o sistema:
+✅ Gera um plano de estudo  
+✅ Sugere exercícios  
+✅ Cria perguntas de revisão  
+✅ Explica erros de código  
+✅ Guarda histórico de estudos  
+✅ Possui sistema de login  
+✅ Interface moderna em React  
+
+---
+
+## 🚀 Funcionalidades
+
+- 🔐 Autenticação (login e cadastro)
+- 🧠 Geração de plano de estudos com IA
+- ❓ Geração de perguntas de treino
+- 🐞 Explicação de erros de código
+- 🕒 Histórico de interações
+- 🌐 API REST em Python
+- 💻 Frontend em React
+
+---
+
+## 🧩 Tecnologias Utilizadas
+
+### Backend
+- Python  
+- FastAPI  
+- SQLAlchemy  
+- SQLite  
+- JWT (autenticação)  
+- API de IA (Gemini/OpenAI)
+
+### Frontend
+- React  
+- JavaScript  
+- Axios  
+- Vite  
+
+---
 
 ## 📁 Estrutura do Projeto
 
-```
-DevMatch AI Assistente de Estudo para Devs/
-├── .venv/                          # Ambiente virtual Python
-├── devmatch-ai/
-│   └── backend/
-│       └── app/
-│           ├── __init__.py
-│           ├── main.py            # Aplicação FastAPI principal
-│           ├── models.py           # Modelos SQLAlchemy (User, StudyItem)
-│           ├── schemas.py          # Schemas Pydantic (validação de dados)
-│           ├── database.py         # Configuração do banco de dados
-│           ├── auth.py             # Autenticação e geração de tokens JWT
-│           ├── ai.py               # Integração com API Gemini
-│           └── requirements.txt    # Dependências Python
+devmatch-ai/
+├── backend/
+│ ├── app/
+│ │ ├── main.py
+│ │ ├── models.py
+│ │ ├── database.py
+│ │ ├── schemas.py
+│ │ ├── auth.py
+│ │ └── ai.py
+│ └── requirements.txt
 └── frontend/
-    ├── public/
-    ├── src/
-    │   ├── main.jsx               # Ponto de entrada React
-    │   ├── app.jsx                # Componente principal
-    │   ├── app.css                # Estilos globais
-    │   ├── index.css              # Estilos base
-    │   └── api.js                 # Cliente HTTP para API
-    ├── components/
-    │   ├── Navbar.jsx             # Componente de navegação
-    │   ├── Navbar.css             # Estilos da navbar
-    │   ├── Card.jsx               # Componente de card
-    │   └── Card.css               # Estilos do card
-    ├── pages/
-    │   ├── login.jsx              # Página de login
-    │   ├── dashboard.jsx          # Página principal
-    │   ├── auth.css               # Estilos de autenticação
-    │   └── dashboard.css          # Estilos do dashboard
-    ├── index.html                 # HTML principal
-    ├── vite.config.js            # Configuração Vite
-    └── package.json              # Dependências JavaScript
-```
+├── src/
+│ ├── pages/
+│ ├── components/
+│ ├── api.js
+│ └── App.jsx
+└── package.json
 
-## 🚀 Instalação e Execução
+yaml
+Copiar código
 
-### Backend
+---
 
-1. **Ativar ambiente virtual:**
-   ```bash
-   cd "c:\Users\User\Documents\Dev\DevMatch AI Assistente de Estudo para Devs"
-   .\.venv\Scripts\activate
-   ```
+## ⚙️ Como rodar o projeto
 
-2. **Instalar dependências:**
-   ```bash
-   cd devmatch-ai\backend\app
-   pip install -r requirements.txt
-   ```
+### 🔹 Backend
 
-3. **Executar servidor:**
-   ```bash
-   cd ..
-   python run_server.py
-   ```
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+Configure sua variável de ambiente da API de IA:
 
-   ✅ **Backend rodando em:** `http://127.0.0.1:8003`
-   - Documentação interativa: `http://127.0.0.1:8003/docs`
+bash
+Copiar código
+setx GEMINI_API_KEY "SUA_CHAVE"
+🔹 Frontend
+bash
+Copiar código
+cd frontend
+npm install
+npm run dev
+🌐 Endpoints principais
+Método	Rota	Descrição
+POST	/auth/register	Cadastro
+POST	/auth/login	Login
+POST	/ai/plan	Gera plano de estudo
+POST	/ai/questions	Gera perguntas
+POST	/ai/explain	Explica erros
+GET	/history	Histórico
 
-### Frontend
+🧠 O que este projeto demonstra
+Consumo de API com IA
 
-1. **Instalar dependências:**
-   ```bash
-   cd frontend
-   npm install
-   ```
+Backend em Python
 
-2. **Executar em desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
+Frontend em React
 
-   O frontend rodará em: `http://localhost:5173`
+Autenticação JWT
 
-3. **Build para produção:**
-   ```bash
-   npm run build
-   ```
+Organização em camadas
 
-## 📋 Endpoints da API
+Banco de dados
 
-### Autenticação
-- `POST /auth/register` - Registro de novo usuário
-- `POST /auth/login` - Login de usuário
+Arquitetura full stack
 
-### IA
-- `POST /ai/plan` - Gerar plano de estudo
-- `POST /ai/questions` - Gerar questões de prática
-- `POST /ai/explain` - Explicar um erro ou conceito
+🚀 Melhorias futuras
+Sistema de progresso do aluno
 
-### Histórico
-- `GET /history` - Obter histórico de estudos do usuário
+Favoritar planos
 
-## 🔑 Variáveis de Ambiente
+Dark mode
 
-### Backend
-Criar arquivo `.env` em `devmatch-ai/backend/app/`:
-```
-DATABASE_URL=sqlite:///./devmatch.db
-SECRET_KEY=sua-chave-secreta-aqui
-GEMINI_API_KEY=sua-chave-api-gemini
-```
+Deploy (Render/Vercel)
 
-## 🛠️ Tecnologias
+Notificações
 
-**Backend:**
-- FastAPI
-- SQLAlchemy
-- Pydantic
-- Python-Jose (JWT)
-- Passlib (Hashing de senhas)
-- Google Gemini API
+Gamificação
 
-**Frontend:**
-- React 18
-- Vite
-- Axios
-- CSS3
-
-## 📝 Notas Importantes
-
-- O banco de dados usa SQLite por padrão
-- CORS está configurado para aceitar requisições de `http://localhost:5173`
-- Autenticação é feita via JWT tokens armazenados no localStorage
-- A integração com Gemini AI requer uma API key válida
-
-## 🔐 Segurança
-
-- Senhas são hasheadas com bcrypt
-- JWT é usado para autenticação
-- CORS está configurado adequadamente
+👩‍💻 Autora
+Dhandara Osserio
+Desenvolvedora Full Stack Júnior
+HTML | CSS | JavaScript | Python | C# | .NET | SQL
 - Variáveis sensíveis devem estar em `.env`
 # DevMatch-AI-Assistente-de-Estudo-para-Devs
 # DevMatch-AI-Assistente-de-Estudo-para-Devs
