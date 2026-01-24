@@ -5,7 +5,7 @@ O **DevMatch AI** é uma aplicação full stack que utiliza **Inteligência Arti
 
 O usuário informa:
 - O que está estudando (ex: Python, React, SQL)
-- Seu nível (iniciante, médio ou avançado)
+
 
 E o sistema:
 ✅ Gera um plano de estudo  
