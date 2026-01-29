@@ -7,19 +7,22 @@ Plataforma web inteligente que combina um backend FastAPI com um frontend React/
 ```
 DevMatch AI Assistente de Estudo para Devs/
 ├── .venv/                          # Ambiente virtual Python
-├── devmatch-ai/
-│   └── backend/
-│       └── app/
-│           ├── __init__.py
-│           ├── main.py            # Aplicação FastAPI principal
-│           ├── models.py           # Modelos SQLAlchemy (User, StudyItem)
-│           ├── schemas.py          # Schemas Pydantic (validação de dados)
-│           ├── database.py         # Configuração do banco de dados
-│           ├── auth.py             # Autenticação e geração de tokens JWT
-│           ├── ai.py               # Integração com API Gemini
-│           └── requirements.txt    # Dependências Python
-└── frontend/
-    ├── public/
+├── backend/                         # Backend FastAPI (movido de devmatch-ai/)
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py                # Aplicação FastAPI principal
+│   │   ├── models.py              # Modelos SQLAlchemy (User, StudyItem)
+│   │   ├── schemas.py             # Schemas Pydantic (validação de dados)
+│   │   ├── database.py            # Configuração do banco de dados MySQL
+│   │   ├── auth.py                # Autenticação e geração de tokens JWT
+│   │   ├── ai.py                  # Integração com API Gemini
+│   │   ├── requirements.txt       # Dependências Python
+│   │   ├── .env                   # Variáveis de ambiente (DATABASE_URL MySQL)
+│   │   ├── test_connection.py     # Script para testar conexão MySQL
+│   │   ├── create_tables.py       # Script para criar tabelas no MySQL
+│   │   └── create_mysql_setup.sql # SQL para criar banco e usuário
+│   └── run_server.py              # Script para rodar o servidor
+└── frontend/                        # Frontend React + Vite
     ├── src/
     │   ├── main.jsx               # Ponto de entrada React
     │   ├── app.jsx                # Componente principal
@@ -44,6 +47,9 @@ DevMatch AI Assistente de Estudo para Devs/
 ## 🚀 Instalação e Execução
 
 ### Backend
+## 🚀 Instalação e Execução
+
+### Backend
 
 1. **Ativar ambiente virtual:**
    ```bash
@@ -53,18 +59,18 @@ DevMatch AI Assistente de Estudo para Devs/
 
 2. **Instalar dependências:**
    ```bash
-   cd devmatch-ai\backend\app
+   cd backend\app
    pip install -r requirements.txt
    ```
 
 3. **Executar servidor:**
    ```bash
    cd ..
-   python run_server.py
+   python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
    ```
 
-   ✅ **Backend rodando em:** `http://127.0.0.1:8003`
-   - Documentação interativa: `http://127.0.0.1:8003/docs`
+   ✅ **Backend rodando em:** `http://127.0.0.1:8000`
+   - Documentação interativa: `http://127.0.0.1:8000/docs`
 
 ### Frontend
 
@@ -79,7 +85,7 @@ DevMatch AI Assistente de Estudo para Devs/
    npm run dev
    ```
 
-   O frontend rodará em: `http://localhost:5173`
+   ✅ O frontend rodará em: `http://localhost:5173`
 
 3. **Build para produção:**
    ```bash
@@ -103,9 +109,9 @@ DevMatch AI Assistente de Estudo para Devs/
 ## 🔑 Variáveis de Ambiente
 
 ### Backend
-Criar arquivo `.env` em `devmatch-ai/backend/app/`:
+Arquivo `.env` em `backend/app/`:
 ```
-DATABASE_URL=sqlite:///./devmatch.db
+DATABASE_URL=mysql+pymysql://devuser:devpass@localhost:3306/devmatch
 SECRET_KEY=sua-chave-secreta-aqui
 GEMINI_API_KEY=sua-chave-api-gemini
 ```
@@ -115,10 +121,12 @@ GEMINI_API_KEY=sua-chave-api-gemini
 **Backend:**
 - FastAPI
 - SQLAlchemy
+- MySQL
 - Pydantic
 - Python-Jose (JWT)
 - Passlib (Hashing de senhas)
 - Google Gemini API
+- PyMySQL (driver MySQL)
 
 **Frontend:**
 - React 18
@@ -126,12 +134,25 @@ GEMINI_API_KEY=sua-chave-api-gemini
 - Axios
 - CSS3
 
+## 🗄️ Banco de Dados
+
+**MySQL:**
+- Banco: `devmatch`
+- Usuário: `devuser` / Senha: `devpass`
+- Host: `localhost:3306`
+
+**Scripts úteis:**
+- `backend/app/test_connection.py` - Testar conexão com MySQL
+- `backend/app/create_tables.py` - Criar tabelas no banco
+- `backend/app/create_mysql_setup.sql` - Script SQL para setup
+
 ## 📝 Notas Importantes
 
-- O banco de dados usa SQLite por padrão
-- CORS está configurado para aceitar requisições de `http://localhost:5173`
-- Autenticação é feita via JWT tokens armazenados no localStorage
-- A integração com Gemini AI requer uma API key válida
+- ✅ O banco de dados foi migrado para MySQL (antes SQLite)
+- ✅ Backend foi separado da pasta `devmatch-ai/` (agora em `backend/`)
+- ✅ CORS está configurado para aceitar requisições de `http://localhost:5173`
+- ✅ Autenticação é feita via JWT tokens armazenados no localStorage
+- ✅ A integração com Gemini AI requer uma API key válida
 
 ## 🔐 Segurança
 
@@ -139,6 +160,6 @@ GEMINI_API_KEY=sua-chave-api-gemini
 - JWT é usado para autenticação
 - CORS está configurado adequadamente
 - Variáveis sensíveis devem estar em `.env`
-# DevMatch-AI-Assistente-de-Estudo-para-Devs
+- MySQL com usuário/senha configurado
 # DevMatch-AI-Assistente-de-Estudo-para-Devs
 # DevMatch-AI-Assistente-de-Estudo-para-Devs
