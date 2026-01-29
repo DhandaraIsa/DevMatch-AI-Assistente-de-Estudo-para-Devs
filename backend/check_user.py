@@ -26,3 +26,4 @@ else:
     print("✗ Usuário não encontrado")
 
 db.close()
+-

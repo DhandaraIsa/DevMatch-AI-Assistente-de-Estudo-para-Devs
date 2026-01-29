@@ -27,3 +27,4 @@ async def test_models():
             print(f"\n{model}: ❌ {e}")
 
 asyncio.run(test_models())
+-

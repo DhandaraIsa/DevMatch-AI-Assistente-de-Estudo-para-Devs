@@ -89,7 +89,7 @@ npm run dev
 Frontend em:
 👉 http://localhost:5173
 
-Build produção:
+Build de produção:
 
 npm run build
 
@@ -106,7 +106,7 @@ POST /ai/plan — Gerar plano de estudo
 
 POST /ai/questions — Gerar questões
 
-POST /ai/explain — Explicar erro/conceito
+POST /ai/explain — Explicar erro ou conceito
 
 📊 Histórico
 
@@ -173,20 +173,20 @@ Autenticação via JWT
 
 CORS configurado
 
-Variáveis sensíveis no .env
+Variáveis sensíveis armazenadas em .env
 
 📌 Observações
 
 ✔️ Banco migrado de SQLite para MySQL
 
-✔️ Estrutura separada backend/frontend
+✔️ Estrutura separada entre backend e frontend
 
-✔️ Pronto para apresentação em portfólio
+✔️ Projeto pronto para portfólio
 
-✔️ Projeto ideal para estágio/júnior
+✔️ Ideal para estágio ou vaga júnior
 
 👩‍💻 Autora
 
 Dhandara Osserio
 Estudante de Análise e Desenvolvimento de Sistemas
-Foco em Back-end (Python / C# / .NET)
+
