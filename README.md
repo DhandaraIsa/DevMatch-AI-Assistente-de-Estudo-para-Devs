@@ -1,165 +1,192 @@
-# DevMatch AI - Assistente de Estudo para Devs
+🚀 DevMatch AI — Assistente de Estudo para Devs
 
-Plataforma web inteligente que combina um backend FastAPI com um frontend React/Vite para criar um assistente de estudo alimentado por IA (Gemini).
+DevMatch AI é uma plataforma web inteligente que utiliza Inteligência Artificial (Google Gemini) para auxiliar desenvolvedores em seus estudos, oferecendo planos personalizados, questões práticas e explicações de erros.
 
-## 📁 Estrutura do Projeto
+O projeto combina:
 
-```
+🧠 Backend em FastAPI
+
+⚛️ Frontend em React + Vite
+
+🗄️ Banco de dados MySQL
+
+🤖 Integração com IA (Gemini API)
+
+✨ Funcionalidades
+
+✅ Cadastro e login de usuários (JWT)
+
+📚 Geração de plano de estudos por tema e nível
+
+📝 Geração de perguntas de prática
+
+🧩 Explicação de erros e conceitos
+
+🕓 Histórico de estudos salvo no banco
+
+🔐 Autenticação segura
+
+🌐 API documentada com Swagger
+
+🧱 Arquitetura
 DevMatch AI Assistente de Estudo para Devs/
 ├── .venv/                          # Ambiente virtual Python
-├── backend/                         # Backend FastAPI (movido de devmatch-ai/)
+├── backend/                         # Backend FastAPI
 │   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py                # Aplicação FastAPI principal
-│   │   ├── models.py              # Modelos SQLAlchemy (User, StudyItem)
-│   │   ├── schemas.py             # Schemas Pydantic (validação de dados)
-│   │   ├── database.py            # Configuração do banco de dados MySQL
-│   │   ├── auth.py                # Autenticação e geração de tokens JWT
-│   │   ├── ai.py                  # Integração com API Gemini
-│   │   ├── requirements.txt       # Dependências Python
-│   │   ├── .env                   # Variáveis de ambiente (DATABASE_URL MySQL)
-│   │   ├── test_connection.py     # Script para testar conexão MySQL
-│   │   ├── create_tables.py       # Script para criar tabelas no MySQL
-│   │   └── create_mysql_setup.sql # SQL para criar banco e usuário
-│   └── run_server.py              # Script para rodar o servidor
-└── frontend/                        # Frontend React + Vite
+│   │   ├── main.py                # Aplicação FastAPI
+│   │   ├── models.py              # Modelos SQLAlchemy
+│   │   ├── schemas.py             # Schemas Pydantic
+│   │   ├── database.py            # Configuração MySQL
+│   │   ├── auth.py                # Autenticação JWT
+│   │   ├── ai.py                  # Integração Gemini
+│   │   ├── test_connection.py     # Teste do banco
+│   │   ├── create_tables.py       # Criação das tabelas
+│   │   └── create_mysql_setup.sql # Script SQL inicial
+│   └── run_server.py              # Inicialização do servidor
+└── frontend/                       # Frontend React + Vite
     ├── src/
-    │   ├── main.jsx               # Ponto de entrada React
-    │   ├── app.jsx                # Componente principal
-    │   ├── app.css                # Estilos globais
-    │   ├── index.css              # Estilos base
-    │   └── api.js                 # Cliente HTTP para API
+    │   ├── main.jsx
+    │   ├── app.jsx
+    │   └── api.js
     ├── components/
-    │   ├── Navbar.jsx             # Componente de navegação
-    │   ├── Navbar.css             # Estilos da navbar
-    │   ├── Card.jsx               # Componente de card
-    │   └── Card.css               # Estilos do card
     ├── pages/
-    │   ├── login.jsx              # Página de login
-    │   ├── dashboard.jsx          # Página principal
-    │   ├── auth.css               # Estilos de autenticação
-    │   └── dashboard.css          # Estilos do dashboard
-    ├── index.html                 # HTML principal
-    ├── vite.config.js            # Configuração Vite
-    └── package.json              # Dependências JavaScript
-```
+    ├── index.html
+    └── package.json
 
-## 🚀 Instalação e Execução
+⚙️ Instalação e Execução
+🔹 Backend
 
-### Backend
-## 🚀 Instalação e Execução
+Ativar ambiente virtual:
 
-### Backend
+cd "c:\Users\User\Documents\Dev\DevMatch AI Assistente de Estudo para Devs"
+.\.venv\Scripts\activate
 
-1. **Ativar ambiente virtual:**
-   ```bash
-   cd "c:\Users\User\Documents\Dev\DevMatch AI Assistente de Estudo para Devs"
-   .\.venv\Scripts\activate
-   ```
 
-2. **Instalar dependências:**
-   ```bash
-   cd backend\app
-   pip install -r requirements.txt
-   ```
+Instalar dependências:
 
-3. **Executar servidor:**
-   ```bash
-   cd ..
-   python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
-   ```
+cd backend\app
+pip install -r requirements.txt
 
-   ✅ **Backend rodando em:** `http://127.0.0.1:8000`
-   - Documentação interativa: `http://127.0.0.1:8000/docs`
 
-### Frontend
+Executar servidor:
 
-1. **Instalar dependências:**
-   ```bash
-   cd frontend
-   npm install
-   ```
+cd ..
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 
-2. **Executar em desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
 
-   ✅ O frontend rodará em: `http://localhost:5173`
+Acesse:
 
-3. **Build para produção:**
-   ```bash
-   npm run build
-   ```
+API: http://127.0.0.1:8000
 
-## 📋 Endpoints da API
+Docs: http://127.0.0.1:8000/docs
 
-### Autenticação
-- `POST /auth/register` - Registro de novo usuário
-- `POST /auth/login` - Login de usuário
+🔹 Frontend
+cd frontend
+npm install
+npm run dev
 
-### IA
-- `POST /ai/plan` - Gerar plano de estudo
-- `POST /ai/questions` - Gerar questões de prática
-- `POST /ai/explain` - Explicar um erro ou conceito
 
-### Histórico
-- `GET /history` - Obter histórico de estudos do usuário
+Frontend em:
+👉 http://localhost:5173
 
-## 🔑 Variáveis de Ambiente
+Build produção:
 
-### Backend
-Arquivo `.env` em `backend/app/`:
-```
+npm run build
+
+📡 Endpoints Principais
+🔐 Autenticação
+
+POST /auth/register — Registrar usuário
+
+POST /auth/login — Login
+
+🤖 IA
+
+POST /ai/plan — Gerar plano de estudo
+
+POST /ai/questions — Gerar questões
+
+POST /ai/explain — Explicar erro/conceito
+
+📊 Histórico
+
+GET /history — Buscar histórico do usuário
+
+🔑 Variáveis de Ambiente
+
+Arquivo .env em backend/app:
+
 DATABASE_URL=mysql+pymysql://devuser:devpass@localhost:3306/devmatch
-SECRET_KEY=sua-chave-secreta-aqui
-GEMINI_API_KEY=sua-chave-api-gemini
-```
+SECRET_KEY=sua-chave-secreta
+GEMINI_API_KEY=sua-chave-gemini
 
-## 🛠️ Tecnologias
+🗄️ Banco de Dados
 
-**Backend:**
-- FastAPI
-- SQLAlchemy
-- MySQL
-- Pydantic
-- Python-Jose (JWT)
-- Passlib (Hashing de senhas)
-- Google Gemini API
-- PyMySQL (driver MySQL)
+Banco: devmatch
 
-**Frontend:**
-- React 18
-- Vite
-- Axios
-- CSS3
+Usuário: devuser
 
-## 🗄️ Banco de Dados
+Porta: 3306
 
-**MySQL:**
-- Banco: `devmatch`
-- Usuário: `devuser` / Senha: `devpass`
-- Host: `localhost:3306`
+Scripts úteis:
 
-**Scripts úteis:**
-- `backend/app/test_connection.py` - Testar conexão com MySQL
-- `backend/app/create_tables.py` - Criar tabelas no banco
-- `backend/app/create_mysql_setup.sql` - Script SQL para setup
+test_connection.py — testar conexão
 
-## 📝 Notas Importantes
+create_tables.py — criar tabelas
 
-- ✅ O banco de dados foi migrado para MySQL (antes SQLite)
-- ✅ Backend foi separado da pasta `devmatch-ai/` (agora em `backend/`)
-- ✅ CORS está configurado para aceitar requisições de `http://localhost:5173`
-- ✅ Autenticação é feita via JWT tokens armazenados no localStorage
-- ✅ A integração com Gemini AI requer uma API key válida
+create_mysql_setup.sql — criar banco e usuário
 
-## 🔐 Segurança
+🛠️ Tecnologias
+Backend
 
-- Senhas são hasheadas com bcrypt
-- JWT é usado para autenticação
-- CORS está configurado adequadamente
-- Variáveis sensíveis devem estar em `.env`
-- MySQL com usuário/senha configurado
-# DevMatch-AI-Assistente-de-Estudo-para-Devs
-# DevMatch-AI-Assistente-de-Estudo-para-Devs
+FastAPI
+
+SQLAlchemy
+
+MySQL
+
+Pydantic
+
+Python-Jose
+
+Passlib
+
+Google Gemini API
+
+PyMySQL
+
+Frontend
+
+React 18
+
+Vite
+
+Axios
+
+CSS3
+
+🔐 Segurança
+
+Senhas com bcrypt
+
+Autenticação via JWT
+
+CORS configurado
+
+Variáveis sensíveis no .env
+
+📌 Observações
+
+✔️ Banco migrado de SQLite para MySQL
+
+✔️ Estrutura separada backend/frontend
+
+✔️ Pronto para apresentação em portfólio
+
+✔️ Projeto ideal para estágio/júnior
+
+👩‍💻 Autora
+
+Dhandara Osserio
+Estudante de Análise e Desenvolvimento de Sistemas
+Foco em Back-end (Python / C# / .NET)
