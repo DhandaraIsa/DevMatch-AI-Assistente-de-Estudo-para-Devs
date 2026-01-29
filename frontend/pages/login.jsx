@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api, setToken } from "../api";
+import { authAPI, setToken } from "../src/api";
 
 export default function Login({ onAuth }) {
   const [mode, setMode] = useState("login");
@@ -9,12 +9,18 @@ export default function Login({ onAuth }) {
 
   async function submit(e) {
     e.preventDefault();
-    const url = mode === "login" ? "/auth/login" : "/auth/register";
-    const payload = mode === "login" ? { email, password } : { name, email, password };
-    const { data } = await api.post(url, payload);
-    localStorage.setItem("token", data.access_token);
-    setToken(data.access_token);
-    onAuth();
+    try {
+      const response = mode === "login" 
+        ? await authAPI.login(email, password)
+        : await authAPI.register(name, email, password);
+      
+      const { access_token } = response.data;
+      localStorage.setItem("token", access_token);
+      setToken(access_token);
+      onAuth();
+    } catch (error) {
+      alert("Erro: " + (error.response?.data?.detail || error.message));
+    }
   }
 
   return (

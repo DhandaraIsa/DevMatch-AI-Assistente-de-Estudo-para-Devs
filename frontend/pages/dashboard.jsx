@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "../api";
+import { api } from "../src/api";
 import Card from "../components/Card";
 
 export default function Dashboard({ onLogout }) {

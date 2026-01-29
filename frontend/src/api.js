@@ -18,6 +18,17 @@ api.interceptors.request.use(config => {
   return config;
 });
 
+// Function to set token
+export const setToken = (token) => {
+  if (token) {
+    localStorage.setItem('access_token', token);
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  } else {
+    localStorage.removeItem('access_token');
+    delete api.defaults.headers.common['Authorization'];
+  }
+};
+
 export const authAPI = {
   register: (name, email, password) => 
     api.post('/auth/register', { name, email, password }),
@@ -39,4 +50,5 @@ export const historyAPI = {
     api.get('/history')
 };
 
+export { api };
 export default api;

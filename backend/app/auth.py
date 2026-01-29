@@ -11,7 +11,8 @@ SECRET_KEY = "CHANGE_ME_IN_PROD"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_HOURS = 10
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Usar argon2 em vez de bcrypt (bcrypt tem bug com passlib 1.7.4)
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 def hash_password(password: str) -> str:
